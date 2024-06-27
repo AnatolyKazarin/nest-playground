@@ -8,16 +8,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
+const sequelize_1 = require("@nestjs/sequelize");
+const users_module_1 = require("./users/users.module");
+const users_controller_1 = require("./users/users.controller");
+const users_service_1 = require("./users/users.service");
+const config_1 = require("@nestjs/config");
+const users_model_1 = require("./users/users.model");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        imports: [
+            config_1.ConfigModule.forRoot({
+                envFilePath: `.${process.env.NODE_ENV}.env`,
+            }),
+            sequelize_1.SequelizeModule.forRoot({
+                dialect: "postgres",
+                host: process.env.POSTGRES_HOST,
+                port: +process.env.POSTGRES_PORT,
+                username: process.env.POSTGRES_USER,
+                password: process.env.POSTGRES_PASSWORD,
+                database: process.env.POSTGRES_DB,
+                models: [users_model_1.User],
+                autoLoadModels: true,
+            }),
+            users_module_1.UsersModule,
+        ],
+        controllers: [users_controller_1.UsersController],
+        providers: [users_service_1.UsersService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

@@ -23,7 +23,7 @@ import { User } from "./users/users.model";
     }),
     UsersModule,
   ],
-  controllers: [UsersController],
-  providers: [UsersService],
+  // controllers: [UsersController],
+  // providers: [UsersService],
 })
 export class AppModule {}

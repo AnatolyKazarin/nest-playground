@@ -10,8 +10,6 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const users_module_1 = require("./users/users.module");
-const users_controller_1 = require("./users/users.controller");
-const users_service_1 = require("./users/users.service");
 const config_1 = require("@nestjs/config");
 const users_model_1 = require("./users/users.model");
 let AppModule = class AppModule {
@@ -35,8 +33,6 @@ exports.AppModule = AppModule = __decorate([
             }),
             users_module_1.UsersModule,
         ],
-        controllers: [users_controller_1.UsersController],
-        providers: [users_service_1.UsersService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
